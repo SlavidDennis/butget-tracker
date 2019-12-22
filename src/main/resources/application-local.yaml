@@ -1,0 +1,13 @@
+server.port: 8081
+
+spring:
+  application.name: home-budget-tracker
+
+  datasource:
+    url: jdbc:postgresql://localhost:15432/budgettracker
+    username: budgettracker
+    password: budgettracker
+    driverClassName: org.postgresql.Driver
+
+  jpa:
+    generate-ddl: true

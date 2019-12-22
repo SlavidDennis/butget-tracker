@@ -1,0 +1,14 @@
+version: '3'
+services:
+
+  budgettracker-db:
+    image: postgres:9.6.10-alpine
+    ports:
+      - "15432:5432"
+    environment:
+      POSTGRES_USER: budgettracker
+      POSTGRES_PASSWORD: budgettracker
+      POSTGRES_DB: budgettracker
+      PGDATA: /tmp
+    volumes:
+      - ./.docker_data/budgettracker-db/data:/var/lib/postgresql/data
