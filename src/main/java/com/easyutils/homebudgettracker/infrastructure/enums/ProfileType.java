@@ -1,4 +1,4 @@
-package com.easyutils.homebudgettracker.domain.enums;
+package com.easyutils.homebudgettracker.infrastructure.enums;
 
 public enum ProfileType {
 

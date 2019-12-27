@@ -1,5 +1,6 @@
 package com.easyutils.homebudgettracker.domain;
 
+import com.easyutils.homebudgettracker.infrastructure.jpa.AuditableDate;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.sql.Date;
 import java.util.List;
 
 @Builder(toBuilder = true)

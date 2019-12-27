@@ -1,4 +1,4 @@
-package com.easyutils.homebudgettracker.domain;
+package com.easyutils.homebudgettracker.infrastructure.jpa;
 
 import lombok.Getter;
 import lombok.Setter;
