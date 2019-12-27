@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.sql.Date;
 
 @Builder(toBuilder = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -17,12 +18,12 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "profile")
-@SequenceGenerator(name = "profile_seq_generator", sequenceName = "profile_seq", allocationSize = 1)
-public class Profile {
+@Table(name = "user_profile")
+@SequenceGenerator(name = "user_profile_seq_generator", sequenceName = "user_profile_seq", allocationSize = 1)
+public class Profile extends AuditableDate {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "profile_seq_generator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_profile_seq_generator")
     private Long id;
     private String uuid;
     @Column(name = "account_uuid")
@@ -42,4 +43,5 @@ public class Profile {
     @NotNull
     @Enumerated(EnumType.STRING)
     private ProfileType profileType;
+    private int versie;
 }

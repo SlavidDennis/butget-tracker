@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import java.sql.Date;
 import java.util.List;
 
 @Builder(toBuilder = true)
@@ -19,7 +19,7 @@ import java.util.List;
 @Entity
 @Table(name = "account")
 @SequenceGenerator(name = "account_seq_generator", sequenceName = "account_seq", allocationSize = 1)
-public class Account {
+public class Account extends AuditableDate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_seq_generator")
@@ -30,5 +30,5 @@ public class Account {
     private String userName;
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "account_uuid", referencedColumnName = "uuid")
-    private List<Profile> profile;
+    private List<Profile> userProfiles;
 }

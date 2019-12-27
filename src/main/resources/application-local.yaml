@@ -9,5 +9,16 @@ spring:
     password: budgettracker
     driverClassName: org.postgresql.Driver
 
+  flyway:
+    out-of-order: true
+    baseline-on-migrate: true
+    placeholders:
+      defaultMigratorRole: budgettracker
+
   jpa:
-    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
