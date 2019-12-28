@@ -43,5 +43,7 @@ public class Profile extends AuditableDate {
     @NotNull
     @Enumerated(EnumType.STRING)
     private ProfileType profileType;
-    private int versie;
+    @Version
+    @Column(name = "version")
+    private int version;
 }

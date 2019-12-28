@@ -1,0 +1,2 @@
+ALTER TABLE user_profile DROP COLUMN versie;
+ALTER TABLE user_profile ADD COLUMN version INTEGER DEFAULT 0;
