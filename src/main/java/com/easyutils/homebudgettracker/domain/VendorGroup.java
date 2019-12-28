@@ -17,18 +17,17 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "account")
-@SequenceGenerator(name = "account_seq_generator", sequenceName = "account_seq", allocationSize = 1)
-public class Account extends AuditableDate {
+@Table(name = "vendor_group")
+@SequenceGenerator(name = "vendor_group_seq_generator", sequenceName = "vendor_group_seq", allocationSize = 1)
+public class VendorGroup extends AuditableDate {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_seq_generator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vendor_group_seq_generator")
     private Long id;
     private String uuid;
-    @Column(name = "user_name")
+    @Column(name = "group_name")
     @NotEmpty
-    private String userName;
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "account_uuid", referencedColumnName = "uuid")
-    private List<UserProfile> userProfiles;
+    private String groupName;
+    @ManyToMany(mappedBy = "vendorGroups", fetch = FetchType.EAGER)
+    private List<Vendor> vendors;
 }

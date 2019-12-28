@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Builder(toBuilder = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,7 +21,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "user_profile")
 @SequenceGenerator(name = "user_profile_seq_generator", sequenceName = "user_profile_seq", allocationSize = 1)
-public class Profile extends AuditableDate {
+public class UserProfile extends AuditableDate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_profile_seq_generator")
@@ -46,4 +47,7 @@ public class Profile extends AuditableDate {
     @Version
     @Column(name = "version")
     private int version;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_profile_uuid", referencedColumnName = "uuid")
+    private List<VendorGroup> vendorGroups;
 }

@@ -1,11 +1,11 @@
 package com.easyutils.homebudgettracker.eao;
 
-import com.easyutils.homebudgettracker.domain.Profile;
+import com.easyutils.homebudgettracker.domain.UserProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ProfileRepository extends JpaRepository<Profile, Long> {
+public interface ProfileRepository extends JpaRepository<UserProfile, Long> {
 
-    List<Profile> findByAccountUuid(String accountUuid);
+    List<UserProfile> findByAccountUuid(String accountUuid);
 }
