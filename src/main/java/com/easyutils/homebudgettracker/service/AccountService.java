@@ -13,7 +13,9 @@ public class AccountService {
     @Autowired
     private AccountRepository repository;
 
-    public void createAccount(Account account) {
+    public String createAccount(Account account) {
+        account.setUuid(UUID.randomUUID().toString());
         repository.save(account);
+        return account.getUuid();
     }
 }

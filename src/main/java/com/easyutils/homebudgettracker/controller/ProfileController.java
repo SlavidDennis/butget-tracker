@@ -20,8 +20,6 @@ public class ProfileController extends DomainController {
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> createAccount(@RequestBody Profile profile) {
-        profile.setUuid(UUID.randomUUID().toString());
-        service.createProfile(profile);
-        return ResponseEntity.ok(createdUuidResponse("createdProfile", profile.getUuid()));
+        return ResponseEntity.ok(createdUuidResponse("createdProfile", service.createProfile(profile)));
     }
 }

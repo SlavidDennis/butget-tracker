@@ -20,8 +20,6 @@ public class AccountController extends DomainController {
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> createAccount(@RequestBody Account account) {
-        account.setUuid(UUID.randomUUID().toString());
-        service.createAccount(account);
-        return ResponseEntity.ok(createdUuidResponse("createdAccount", account.getUuid()));
+        return ResponseEntity.ok(createdUuidResponse("createdAccount", service.createAccount(account)));
     }
 }

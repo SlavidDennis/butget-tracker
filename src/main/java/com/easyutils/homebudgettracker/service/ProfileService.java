@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ProfileService {
@@ -14,11 +15,13 @@ public class ProfileService {
     @Autowired
     private ProfileRepository repository;
 
-    public void createProfile(Profile profile) {
+    public String createProfile(Profile profile) {
+        profile.setUuid(UUID.randomUUID().toString());
         if(CollectionUtils.isEmpty(getProfilesForAccount(profile.getAccountUuid()))) {
             profile.setPrimary(true);
         }
         repository.save(profile);
+        return profile.getUuid();
     }
 
     private List<Profile> getProfilesForAccount(String accountUuid) {
