@@ -25,6 +25,9 @@ public class VendorGroup extends AuditableDate {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vendor_group_seq_generator")
     private Long id;
     private String uuid;
+    @Column(name = "user_profile_uuid")
+    @NotEmpty
+    private String userProfileUuid;
     @Column(name = "group_name")
     @NotEmpty
     private String groupName;
