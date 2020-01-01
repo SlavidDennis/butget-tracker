@@ -31,6 +31,7 @@ public class VendorGroup extends AuditableDate {
     @Column(name = "group_name")
     @NotEmpty
     private String groupName;
-    @ManyToMany(mappedBy = "vendorGroups", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "vendor_group_uuid", referencedColumnName = "uuid")
     private List<Vendor> vendors;
 }

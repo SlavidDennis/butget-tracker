@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
 
 @Builder(toBuilder = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -27,11 +26,7 @@ public class Vendor {
     @Column(name = "vendor_name")
     @NotEmpty
     private String vendorName;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "vendor_vendorgroup",
-            joinColumns = {@JoinColumn(name = "vendor_uuid", referencedColumnName = "uuid")},
-            inverseJoinColumns = {@JoinColumn(name = "vendor_group_uuid", referencedColumnName = "uuid")}
-    )
-    private List<VendorGroup> vendorGroups;
+    @Column(name = "vendor_group_uuid")
+    @NotEmpty
+    private String vendorGroupUuid;
 }
