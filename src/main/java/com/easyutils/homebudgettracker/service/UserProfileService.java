@@ -24,17 +24,13 @@ public class UserProfileService {
 
     public String createProfile(UserProfile userProfile) {
         userProfile.setUuid(UUID.randomUUID().toString());
-        if (CollectionUtils.isEmpty(getProfilesForAccount(userProfile.getAccountUuid()))) {
-            userProfile.setPrimary(true);
-        }
+        userProfile.setPrimary(CollectionUtils.isEmpty(getProfilesForAccount(userProfile.getAccountUuid())));
         repository.save(userProfile);
         return userProfile.getUuid();
     }
 
     List<UserProfileDto> getProfilesForAccount(String accountUuid) {
-        List<UserProfile> profiles = repository.findByAccountUuid(accountUuid);
-        System.out.println("hoi");
-        return profiles.stream()
+        return repository.findByAccountUuid(accountUuid).stream()
                 .map(up -> modelMapper.map(up, UserProfileDto.class))
                 .collect(toList());
     }
