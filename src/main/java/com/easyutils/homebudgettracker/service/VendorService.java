@@ -2,6 +2,7 @@ package com.easyutils.homebudgettracker.service;
 
 import com.easyutils.homebudgettracker.domain.Vendor;
 import com.easyutils.homebudgettracker.domain.VendorGroup;
+import com.easyutils.homebudgettracker.domain.dto.VendorDto;
 import com.easyutils.homebudgettracker.domain.dto.VendorGroupDto;
 import com.easyutils.homebudgettracker.eao.VendorGroupRepository;
 import com.easyutils.homebudgettracker.eao.VendorRepository;
@@ -42,6 +43,12 @@ public class VendorService {
     public List<VendorGroupDto> getVendorGroupsForProfile(String profileUuid) {
         return groupRepository.findAllByUserProfileUuid(profileUuid).stream()
                 .map(vg -> modelMapper.map(vg, VendorGroupDto.class))
+                .collect(toList());
+    }
+
+    public List<VendorDto> getVendorsForVendorGroup(String groupUuid) {
+        return vendorRepository.findAllByVendorGroupUuid(groupUuid).stream()
+                .map(vg -> modelMapper.map(vg, VendorDto.class))
                 .collect(toList());
     }
 }

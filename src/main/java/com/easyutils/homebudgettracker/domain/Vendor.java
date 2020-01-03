@@ -1,5 +1,6 @@
 package com.easyutils.homebudgettracker.domain;
 
+import com.easyutils.homebudgettracker.infrastructure.jpa.AuditableDate;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 @Builder(toBuilder = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -21,7 +23,7 @@ import javax.validation.constraints.NotEmpty;
 @SequenceGenerator(name = "vendor_seq_generator", sequenceName = "vendor_seq", allocationSize = 1)
 @DynamicUpdate
 @DynamicInsert
-public class Vendor {
+public class Vendor extends AuditableDate implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vendor_seq_generator")
