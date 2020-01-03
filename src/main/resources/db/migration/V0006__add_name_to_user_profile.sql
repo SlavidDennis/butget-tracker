@@ -1,0 +1,1 @@
+ALTER TABLE user_profile add COLUMN profile_name VARCHAR(200);

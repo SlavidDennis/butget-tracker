@@ -7,10 +7,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 @Builder(toBuilder = true)
@@ -21,7 +24,9 @@ import java.util.List;
 @Entity
 @Table(name = "user_profile")
 @SequenceGenerator(name = "user_profile_seq_generator", sequenceName = "user_profile_seq", allocationSize = 1)
-public class UserProfile extends AuditableDate {
+@DynamicUpdate
+@DynamicInsert
+public class UserProfile extends AuditableDate implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_profile_seq_generator")
@@ -30,6 +35,9 @@ public class UserProfile extends AuditableDate {
     @Column(name = "account_uuid")
     @NotEmpty
     private String accountUuid;
+    @Column(name = "profile_name")
+    @NotEmpty
+    private String profileName;
     @NotEmpty
     private String email;
     @Column(name = "total_adults")

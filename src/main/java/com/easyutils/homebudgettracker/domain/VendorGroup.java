@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -19,6 +21,8 @@ import java.util.List;
 @Entity
 @Table(name = "vendor_group")
 @SequenceGenerator(name = "vendor_group_seq_generator", sequenceName = "vendor_group_seq", allocationSize = 1)
+@DynamicUpdate
+@DynamicInsert
 public class VendorGroup extends AuditableDate {
 
     @Id
