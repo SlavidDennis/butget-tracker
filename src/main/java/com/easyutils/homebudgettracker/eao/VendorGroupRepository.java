@@ -7,7 +7,5 @@ import java.util.List;
 
 public interface VendorGroupRepository extends JpaRepository<VendorGroup, Long> {
 
-    List<VendorGroup> findAllByGroupName(String groupName);
-
-    VendorGroup findByUuid(String groupUuid);
+    List<VendorGroup> findAllByUserProfileUuid(String profileUuid);
 }

@@ -11,6 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.List;
 
 @Builder(toBuilder = true)
@@ -23,7 +24,7 @@ import java.util.List;
 @SequenceGenerator(name = "vendor_group_seq_generator", sequenceName = "vendor_group_seq", allocationSize = 1)
 @DynamicUpdate
 @DynamicInsert
-public class VendorGroup extends AuditableDate {
+public class VendorGroup extends AuditableDate implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vendor_group_seq_generator")

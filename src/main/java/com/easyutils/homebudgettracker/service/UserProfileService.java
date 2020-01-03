@@ -2,6 +2,7 @@ package com.easyutils.homebudgettracker.service;
 
 import com.easyutils.homebudgettracker.domain.UserProfile;
 import com.easyutils.homebudgettracker.domain.dto.UserProfileDto;
+import com.easyutils.homebudgettracker.domain.dto.VendorGroupDto;
 import com.easyutils.homebudgettracker.eao.UserProfileRepository;
 import com.easyutils.homebudgettracker.mapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class UserProfileService {
     private UserProfileRepository repository;
 
     @Autowired
+    private VendorService vendorService;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     public String createProfile(UserProfile userProfile) {
@@ -33,5 +37,9 @@ public class UserProfileService {
         return repository.findByAccountUuid(accountUuid).stream()
                 .map(up -> modelMapper.map(up, UserProfileDto.class))
                 .collect(toList());
+    }
+
+    public List<VendorGroupDto> getVendorGroupsForProfile(String profileUuid) {
+        return vendorService.getVendorGroupsForProfile(profileUuid);
     }
 }
