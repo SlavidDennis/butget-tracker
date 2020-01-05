@@ -4,51 +4,16 @@ import com.easyutils.homebudgettracker.domain.Vendor;
 import com.easyutils.homebudgettracker.domain.VendorGroup;
 import com.easyutils.homebudgettracker.domain.dto.VendorDto;
 import com.easyutils.homebudgettracker.domain.dto.VendorGroupDto;
-import com.easyutils.homebudgettracker.eao.VendorGroupRepository;
-import com.easyutils.homebudgettracker.eao.VendorRepository;
-import com.easyutils.homebudgettracker.mapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
-import static java.util.stream.Collectors.toList;
+public interface VendorService {
 
-@Service
-public class VendorService {
+    String createVendorGroup(VendorGroup vendorGroup);
 
-    @Autowired
-    private VendorGroupRepository groupRepository;
+    String createVendor(Vendor vendor, String groupUuid);
 
-    @Autowired
-    private VendorRepository vendorRepository;
+    List<VendorGroupDto> getVendorGroupsForProfile(String profileUuid);
 
-    @Autowired
-    private ModelMapper modelMapper;
-
-    public String createVendorGroup(VendorGroup vendorGroup) {
-        vendorGroup.setUuid(UUID.randomUUID().toString());
-        groupRepository.save(vendorGroup);
-        return vendorGroup.getUuid();
-    }
-
-    public String createVendor(Vendor vendor, String groupUuid) {
-        vendor.setUuid(UUID.randomUUID().toString());
-        vendor.setVendorGroupUuid(groupUuid);
-        vendorRepository.save(vendor);
-        return vendor.getUuid();
-    }
-
-    public List<VendorGroupDto> getVendorGroupsForProfile(String profileUuid) {
-        return groupRepository.findAllByUserProfileUuid(profileUuid).stream()
-                .map(vg -> modelMapper.map(vg, VendorGroupDto.class))
-                .collect(toList());
-    }
-
-    public List<VendorDto> getVendorsForVendorGroup(String groupUuid) {
-        return vendorRepository.findAllByVendorGroupUuid(groupUuid).stream()
-                .map(vg -> modelMapper.map(vg, VendorDto.class))
-                .collect(toList());
-    }
+    List<VendorDto> getVendorsForVendorGroup(String groupUuid);
 }

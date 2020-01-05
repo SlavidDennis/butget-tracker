@@ -1,7 +1,7 @@
 package com.easyutils.homebudgettracker.controller;
 
 import com.easyutils.homebudgettracker.domain.Account;
-import com.easyutils.homebudgettracker.service.AccountService;
+import com.easyutils.homebudgettracker.service.AccountServiceImpl;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ import static org.mockito.ArgumentMatchers.any;
 class AccountControllerTest {
 
     @Mock
-    private AccountService service;
+    private AccountServiceImpl service;
     @InjectMocks
     @Autowired
     private AccountController accountController;
@@ -41,9 +41,9 @@ class AccountControllerTest {
         Mockito.when(service.createAccount(any(Account.class))).thenReturn(uuid);
         //Execute
         ResponseEntity<Object> response = accountController.createAccount(account);
-        Map<String, String> responseBody = (HashMap<String, String>) response.getBody();
         //Assert
         Assert.assertEquals(200, response.getStatusCodeValue());
+        Map<String, String> responseBody = (HashMap<String, String>) response.getBody();
         Assert.assertThat(responseBody, Matchers.hasKey(expectedKey));
         Assert.assertEquals(uuid, responseBody.get(expectedKey));
     }
