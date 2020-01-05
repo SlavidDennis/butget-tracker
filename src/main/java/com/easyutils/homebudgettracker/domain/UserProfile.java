@@ -1,7 +1,7 @@
 package com.easyutils.homebudgettracker.domain;
 
 import com.easyutils.homebudgettracker.infrastructure.enums.ProfileType;
-import com.easyutils.homebudgettracker.infrastructure.jpa.AuditableDate;
+import com.easyutils.homebudgettracker.infrastructure.jpa.DomainEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +26,7 @@ import java.util.List;
 @SequenceGenerator(name = "user_profile_seq_generator", sequenceName = "user_profile_seq", allocationSize = 1)
 @DynamicUpdate
 @DynamicInsert
-public class UserProfile extends AuditableDate implements Serializable {
+public class UserProfile extends DomainEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_profile_seq_generator")

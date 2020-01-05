@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class AuditableDate {
+public class DomainEntity {
 
     @Column(name = "aangemaakt_op", updatable = false)
     @CreatedDate

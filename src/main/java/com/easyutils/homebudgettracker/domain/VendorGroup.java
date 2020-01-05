@@ -1,6 +1,6 @@
 package com.easyutils.homebudgettracker.domain;
 
-import com.easyutils.homebudgettracker.infrastructure.jpa.AuditableDate;
+import com.easyutils.homebudgettracker.infrastructure.jpa.DomainEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +24,7 @@ import java.util.List;
 @SequenceGenerator(name = "vendor_group_seq_generator", sequenceName = "vendor_group_seq", allocationSize = 1)
 @DynamicUpdate
 @DynamicInsert
-public class VendorGroup extends AuditableDate implements Serializable {
+public class VendorGroup extends DomainEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vendor_group_seq_generator")
